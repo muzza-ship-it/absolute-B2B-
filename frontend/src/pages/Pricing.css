@@ -1,0 +1,13 @@
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5);
+}
+.pricing-card--highlighted {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+.pricing-card__price {
+  font-size: var(--fs-500);
+  font-weight: var(--fw-semibold);
+}

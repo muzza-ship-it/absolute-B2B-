@@ -1,0 +1,24 @@
+.home-hero__headline {
+  font-size: var(--fs-800);
+  max-width: 18ch;
+}
+.home-hero__supporting {
+  font-size: var(--fs-400);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+  margin-bottom: var(--space-6);
+}
+@media (max-width: 768px) {
+  .home-hero__headline {
+    font-size: var(--fs-700);
+  }
+}
+
+.content-gap-placeholder {
+  border: 1px dashed var(--color-border);
+}
+.content-gap-placeholder__label {
+  font-weight: var(--fw-semibold);
+  color: var(--color-error);
+  margin-bottom: var(--space-2);
+}

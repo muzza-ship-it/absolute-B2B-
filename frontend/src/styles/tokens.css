@@ -1,0 +1,80 @@
+/*
+ * DESIGN TOKENS — PLACEHOLDER SET
+ * ---------------------------------------------------------------
+ * These values are intentionally neutral placeholders, not a real
+ * brand identity. Per client instruction: do not guess/invent the
+ * actual Absolute B2B brand colors or typeface. Every color token
+ * is commented as a placeholder. Replace this whole file once real
+ * screenshots/brand assets are supplied — every component consumes
+ * these variables, so no component code needs to change.
+ */
+
+:root {
+  /* ---- Color — PLACEHOLDER, replace with confirmed brand colors ---- */
+  --color-bg: #ffffff;                 /* PLACEHOLDER */
+  --color-surface: #f5f6f8;            /* PLACEHOLDER */
+  --color-border: #e2e4e9;             /* PLACEHOLDER */
+  --color-text: #1a1d23;               /* PLACEHOLDER */
+  --color-text-muted: #5b616e;         /* PLACEHOLDER */
+  --color-primary: #2952e3;            /* PLACEHOLDER — functional blue, not brand color */
+  --color-primary-hover: #1f3fb8;      /* PLACEHOLDER */
+  --color-on-primary: #ffffff;         /* PLACEHOLDER */
+  --color-accent: #2952e3;             /* PLACEHOLDER — mirrors primary until confirmed */
+  --color-success: #1a7f37;            /* PLACEHOLDER */
+  --color-error: #c1272d;              /* PLACEHOLDER */
+  --color-star: #e3a72b;               /* PLACEHOLDER — testimonial star rating color */
+
+  /* ---- Typography — PLACEHOLDER, system stack until brand font confirmed ---- */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-display: var(--font-body); /* single family until a second is confirmed */
+
+  --fs-100: 0.8rem;   /* 12.8px — fine print */
+  --fs-200: 0.9rem;   /* 14.4px — small */
+  --fs-300: 1rem;      /* 16px  — body */
+  --fs-400: 1.125rem;  /* 18px  — lead paragraph */
+  --fs-500: 1.5rem;    /* 24px  — h3 */
+  --fs-600: 2rem;      /* 32px  — h2 */
+  --fs-700: 2.75rem;   /* 44px  — h1 (desktop) */
+  --fs-800: 3.5rem;    /* 56px  — hero (desktop) */
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* ---- Radius / shadow ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(16, 18, 22, 0.06);
+  --shadow-md: 0 4px 16px rgba(16, 18, 22, 0.08);
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --container-padding: var(--space-5);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  /* ---- Breakpoints (for reference in comments; CSS can't read these
+     as media-query values, so components mirror them in @media rules) ----
+     xs: 360px  sm: 430px  md: 768px  lg: 1024px  xl: 1280px  xxl: 1440px
+  */
+}

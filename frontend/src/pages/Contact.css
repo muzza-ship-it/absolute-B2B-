@@ -1,0 +1,25 @@
+.contact-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-8);
+}
+.contact-form__success {
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+.contact-form__banner {
+  padding: var(--space-3) var(--space-4);
+  background: rgba(193, 39, 45, 0.08);
+  color: var(--color-error);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-5);
+}
+.contact-info h3 {
+  font-size: var(--fs-400);
+}
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}

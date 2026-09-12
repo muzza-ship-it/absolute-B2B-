@@ -1,0 +1,17 @@
+# Dependencies
+**/node_modules/
+
+# Build output
+frontend/dist/
+
+# Environment secrets — never commit
+**/.env
+!**/.env.example
+
+# Editor/OS cruft
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log

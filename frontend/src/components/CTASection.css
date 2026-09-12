@@ -1,0 +1,17 @@
+.cta-section {
+  background: var(--color-surface);
+}
+.cta-section__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+.cta-section__inner h2 {
+  margin-bottom: var(--space-2);
+}
+.cta-section__inner p {
+  color: var(--color-text-muted);
+  margin: 0;
+}
