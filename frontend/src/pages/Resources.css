@@ -1,0 +1,25 @@
+.whitepaper-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+@media (max-width: 1024px) {
+  .whitepaper-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .whitepaper-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.whitepaper-card h3 {
+  font-size: var(--fs-400);
+}
+.whitepaper-card__subtitle {
+  color: var(--color-text-muted, inherit);
+}
+.whitepaper-card__meta {
+  font-size: var(--fs-200, 0.875rem);
+  margin-bottom: var(--space-3);
+}

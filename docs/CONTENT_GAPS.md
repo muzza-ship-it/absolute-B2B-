@@ -32,13 +32,32 @@ or client-provided text).
 - [ ] CTA label/behavior per tier (e.g., does it link to Contact, or to a
       checkout?)
 
+## Blocks Phase 11/13 (partial) — CTA band copy
+- [ ] Real heading copy for the 7 reusable `CTASection` bands (Home, About,
+      Services, ServiceDetail, Case Studies, CaseStudyDetail, Testimonials,
+      Pricing). **Phase 4B correction:** these previously shipped as
+      unlabeled invented text (e.g. "Ready to grow your pipeline?",
+      "Let's work together") — found during the independent Phase 4B QA
+      audit as a content-integrity violation, since it wasn't marked as a
+      placeholder like every other unconfirmed string in this codebase.
+      All 8 call sites now pass `heading="CONTENT SOURCE REQUIRED"`
+      instead. Do not reintroduce invented heading copy — wait for real
+      copy or explicit direction on what these bands should say.
+- [ ] Contact page subtitle (`PageHero subtitle` on `/contact`) — same
+      issue and same fix: was "Tell us about your business and we'll be in
+      touch.", now `"CONTENT SOURCE REQUIRED"`.
+
 ## Blocks Phase 5 / Visual QA — Design Reference
 - [ ] Screenshots or screen recording of the live Emergent site (Home,
       About, Services, a service detail page, Case Studies, a case study
       detail page, Testimonials, Pricing, Contact — desktop and mobile)
 - [ ] Color palette (hex values if known, or clear screenshots to sample from)
 - [ ] Font family names if known
-- [ ] Logo file (SVG/PNG)
+- [x] Logo file (SVG/PNG) — **supplied 2026-09-12** as `AB_Logo.jpeg`,
+      integrated at `frontend/src/assets/brand/logo.jpeg`. See
+      `frontend/src/assets/brand/MANIFEST.md`. A separate square icon-only
+      mark is still needed for a favicon — see that manifest for why the
+      full lockup couldn't safely be adapted into one.
 
 ## Blocks Phase 11/13 (partial) — Homepage detail
 - [ ] Exact statistics block content beyond "500,000 qualified leads" /

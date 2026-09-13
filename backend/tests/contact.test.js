@@ -11,10 +11,14 @@
 //   npm test
 //
 // The suite covers the cases required by docs/FORM_API_SPEC.md and the
-// master requirements (empty form, invalid email, incomplete form, valid
-// submission, and rate limiting). Email delivery itself is mocked, since
-// real SMTP delivery cannot be exercised without live credentials (see
-// services/email.service.js for that boundary).
+// master requirements: empty form, invalid email, incomplete form, valid
+// submission, honeypot handling, and per-IP rate limiting (added in Phase
+// 4B remediation — see the rate-limit test below, which uses a synthetic
+// X-Forwarded-For value via app.set('trust proxy', 1) in server.js so it
+// doesn't share rate-limit state with the other tests in this file, which
+// all use the real loopback address). Email delivery itself is mocked,
+// since real SMTP delivery cannot be exercised without live credentials
+// (see services/email.service.js for that boundary).
 
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -22,12 +26,12 @@ import http from 'node:http';
 
 // Minimal in-process request helper avoids adding supertest as a
 // dependency; swap in supertest/axios in a real CI setup if preferred.
-async function request(app, { method, path, body }) {
+async function request(app, { method, path, body, headers }) {
   const server = app.listen(0);
   const { port } = server.address();
   const res = await fetch(`http://127.0.0.1:${port}${path}`, {
     method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...headers },
     body: body ? JSON.stringify(body) : undefined,
   });
   const json = await res.json().catch(() => null);
@@ -56,7 +60,6 @@ before(async () => {
 });
 
 test('POST /api/contact — empty body returns 400 with field errors', async () => {
-  if (!buildApp) return; // see note in before() — requires createApp() export
   const app = buildApp();
   const res = await request(app, { method: 'POST', path: '/api/contact', body: {} });
   assert.equal(res.status, 400);
@@ -67,7 +70,6 @@ test('POST /api/contact — empty body returns 400 with field errors', async () 
 });
 
 test('POST /api/contact — invalid email returns 400', async () => {
-  if (!buildApp) return;
   const app = buildApp();
   const res = await request(app, {
     method: 'POST',
@@ -79,7 +81,6 @@ test('POST /api/contact — invalid email returns 400', async () => {
 });
 
 test('POST /api/contact — missing required message returns 400', async () => {
-  if (!buildApp) return;
   const app = buildApp();
   const res = await request(app, {
     method: 'POST',
@@ -91,7 +92,6 @@ test('POST /api/contact — missing required message returns 400', async () => {
 });
 
 test('POST /api/contact — valid submission without SMTP configured returns 502, never a fake 200', async () => {
-  if (!buildApp) return;
   const app = buildApp();
   const res = await request(app, {
     method: 'POST',
@@ -107,7 +107,6 @@ test('POST /api/contact — valid submission without SMTP configured returns 502
 });
 
 test('POST /api/contact — honeypot filled returns 200 without sending', async () => {
-  if (!buildApp) return;
   const app = buildApp();
   const res = await request(app, {
     method: 'POST',
@@ -123,8 +122,46 @@ test('POST /api/contact — honeypot filled returns 200 without sending', async 
   assert.equal(res.body.success, true);
 });
 
+test('POST /api/contact — 6th request within the window returns 429', async () => {
+  const app = buildApp();
+  // A synthetic, test-only client IP (RFC 5737 documentation range),
+  // sent via X-Forwarded-For. app.set('trust proxy', 1) in server.js
+  // makes Express honor this for req.ip, which is what the rate limiter
+  // keys on — so this test's 6 requests are counted separately from the
+  // other tests in this file, which all share the real loopback address.
+  const headers = { 'X-Forwarded-For': '203.0.113.42' };
+
+  // First 5 requests (the configured max — see
+  // backend/src/middleware/rateLimit.js) should each be handled normally
+  // (rejected for validation, since the body is empty, but NOT rate
+  // limited).
+  for (let i = 0; i < 5; i += 1) {
+    const res = await request(app, {
+      method: 'POST',
+      path: '/api/contact',
+      body: {},
+      headers,
+    });
+    assert.notEqual(
+      res.status,
+      429,
+      `request ${i + 1} of 5 should not be rate limited yet`
+    );
+  }
+
+  // The 6th request from the same (synthetic) client within the window
+  // must be rejected by the rate limiter itself.
+  const limited = await request(app, {
+    method: 'POST',
+    path: '/api/contact',
+    body: {},
+    headers,
+  });
+  assert.equal(limited.status, 429);
+  assert.equal(limited.body.success, false);
+});
+
 test('GET /api/health returns ok', async () => {
-  if (!buildApp) return;
   const app = buildApp();
   const res = await request(app, { method: 'GET', path: '/api/health' });
   assert.equal(res.status, 200);

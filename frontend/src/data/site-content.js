@@ -2,6 +2,14 @@
 // (that lives in services.js / testimonials.js / etc). See
 // docs/CONTENT_INGESTION.md for the _meta status system:
 // CONFIRMED | RECOVERED_NEEDS_VERIFICATION | CONTENT_SOURCE_REQUIRED.
+//
+// IMPORTANT: this file must stay loadable by plain Node with no bundler —
+// scripts/generate-sitemap.js dynamically `import()`s it directly (see
+// that script's comments) so the sitemap can be generated without
+// `npm install`. Do NOT import binary assets (images, fonts) here, even
+// for brand.logoPath — Node's module loader can't resolve those without
+// Vite. The real logo import lives in Header.jsx instead, which is only
+// ever loaded through Vite.
 
 export const siteContent = {
   domain: 'absoluteb2b.com',
@@ -33,45 +41,74 @@ export const siteContent = {
       { claim: 'over 10 years', status: 'UNVERIFIED' },
       { claim: '500,000 qualified leads', status: 'UNVERIFIED' },
     ],
-    // Stats band, services preview, industries block detail, value prop,
-    // testimonial/case-study previews: CONTENT SOURCE REQUIRED — presence,
-    // order, and copy unconfirmed beyond the hero above.
     statsBand: {
-      _meta: { status: 'CONTENT_SOURCE_REQUIRED', source: null, confidence: null, notes: null },
-      items: [], // e.g. [{ value: "CONTENT SOURCE REQUIRED", label: "CONTENT SOURCE REQUIRED" }]
+      _meta: { status: 'RECOVERED_NEEDS_VERIFICATION', source: 'screenshot: 07-media-deck-1.png, supplied 2026-09-13', confidence: 'high', notes: 'Media Deck shows the same aggregate 10+/500K+/50+ stats.' },
+      items: [
+        { value: '10+', label: 'Years Experience' },
+        { value: '500K+', label: 'Leads Generated' },
+        { value: '50+', label: 'Clients Served' },
+      ],
     },
     servicesPreview: {
-      _meta: { status: 'CONTENT_SOURCE_REQUIRED', source: null, confidence: null, notes: 'Which services are featured, and in what order, is unconfirmed.' },
-      featuredServiceSlugs: [],
+      _meta: { status: 'RECOVERED_NEEDS_VERIFICATION', source: 'screenshot: 01-home.png / 07-media-deck-1.png, supplied 2026-09-13', confidence: 'high', notes: 'Four visible core services recovered.' },
+      featuredServiceSlugs: ['b2b-tech-marketing-sales', 'demand-appointment-generation', 'email-digital-marketing', 'content-strategy-creation'],
     },
     valueProposition: {
-      _meta: { status: 'CONTENT_SOURCE_REQUIRED', source: null, confidence: null, notes: null },
-      heading: 'CONTENT SOURCE REQUIRED',
-      body: 'CONTENT SOURCE REQUIRED',
+      _meta: { status: 'RECOVERED_NEEDS_VERIFICATION', source: 'screenshot: 01-home.png, supplied 2026-09-13', confidence: 'high', notes: 'Visible CTA band copy recovered from screenshot.' },
+      heading: 'READY TO TRANSFORM YOUR LEAD GENERATION?',
+      body: 'Join 50+ companies who trust us to deliver qualified leads and drive growth. Get started today with a free consultation.',
     },
   },
 
   about: {
-    _meta: { status: 'CONTENT_SOURCE_REQUIRED', source: null, confidence: null, notes: 'No About copy supplied yet.' },
-    intro: 'CONTENT SOURCE REQUIRED',
-    story: 'CONTENT SOURCE REQUIRED',
+    _meta: {
+      status: 'RECOVERED_NEEDS_VERIFICATION',
+      source: 'screenshot: 06-about.png, supplied 2026-09-13',
+      confidence: 'high',
+      notes: 'About page content recovered from the supplied screenshot. Journey continues below the captured viewport; only visible milestones are recorded here.',
+    },
+    heading: '10 YEARS OF EXCELLENCE',
+    intro:
+      "Since 2014, we've been helping businesses across Technology, Healthcare, Finance, and E-commerce transform their lead generation strategies and achieve unprecedented growth.",
+    story:
+      "With over 500,000 qualified leads generated and 50+ satisfied clients, we've established ourselves as the trusted partner for B2B lead generation excellence.",
+    stats: [
+      { value: '10+', label: 'Years in Business' },
+      { value: '500K+', label: 'Leads Generated' },
+      { value: '50+', label: 'Happy Clients' },
+      { value: '98%', label: 'Client Satisfaction' },
+    ],
+    values: [
+      { title: 'Results Driven', body: 'We measure success by the qualified leads we deliver and the growth we drive for your business.' },
+      { title: 'Client Centric', body: 'Your success is our success. We build long-term partnerships based on trust and transparency.' },
+      { title: 'Quality First', body: 'Every lead goes through rigorous quality assurance to ensure it meets your exact criteria.' },
+      { title: 'Data Driven', body: 'We leverage advanced analytics and market insights to continuously optimize your campaigns.' },
+    ],
+    journey: [
+      { year: '2014', text: 'Founded with a mission to revolutionize B2B lead generation' },
+      { year: '2016', text: 'Reached 100 clients and expanded into healthcare sector' },
+      { year: '2018', text: 'Generated 100,000+ qualified leads' },
+    ],
     mission: 'CONTENT SOURCE REQUIRED',
-    team: [], // presence on the real site unconfirmed
+    team: [],
   },
 
   contact: {
     email: 'info@absoluteb2b.com',
-    phoneDisplay: '+1 (518) 740-9315',
-    phoneHref: '+15187409315',
+    phoneDisplay: '+91 8208876771',
+    phoneHref: '+918208876771',
+   
     _meta: {
       status: 'CONFIRMED',
-      source: 'client message, 2026-09-08',
+      source: 'client clarification, 2026-09-13',
       confidence: 'high',
-      notes: null,
+      notes: 'Current contact details were explicitly confirmed by the client. The previous New York address is no longer current. +91 8208876771 and +91 7972855961 are both current primary contact numbers; do not assign founder/partner role labels.',
     },
-    address: null, // CONTENT SOURCE REQUIRED — presence unconfirmed
-    hours: null, // CONTENT SOURCE REQUIRED — presence unconfirmed
-  },
+    address: '8 The Green, Suite R, Kent, Dover, Delaware 19901, United States of America',
+    hours: 'Mon–Fri 9AM–6PM EST',
+    secondaryPhoneDisplay: '+91 7972855961',
+    secondaryPhoneHref: '+917972855961',
+      },
 
   navigation: {
     // Link labels/targets are confirmed via the 7-route structure already
@@ -88,17 +125,42 @@ export const siteContent = {
   },
 
   brand: {
-    _meta: { status: 'CONTENT_SOURCE_REQUIRED', source: null, confidence: null, notes: 'Logo file, brand colors, and typeface not yet supplied. See frontend/src/assets/brand/.' },
-    logoPath: null,
+    _meta: {
+      status: 'PARTIALLY_CONFIRMED',
+      source: 'owner-supplied file, AB_Logo.jpeg, 2026-09-12',
+      confidence: 'high (logo only)',
+      notes:
+        'Primary logo supplied and integrated (Phase 4B logo integration). ' +
+        "logoPath is a descriptive location string, not a live import — " +
+        'see the file-level comment above for why (keeps this file ' +
+        'Node-loadable for scripts/generate-sitemap.js). Header.jsx does ' +
+        'its own `import logo from \'../assets/brand/logo.jpeg\'` to get ' +
+        'the actual Vite-resolved asset URL. Brand colors and typeface ' +
+        'are still NOT supplied — do not infer them from the logo\'s ' +
+        'colors. See frontend/src/assets/brand/.',
+    },
+    logoPath: 'frontend/src/assets/brand/logo.jpeg',
     colors: null,
     fonts: null,
   },
 
   seo: {
-    _meta: { status: 'CONTENT_SOURCE_REQUIRED', source: null, confidence: null, notes: 'Placeholders below are structurally reasonable, not confirmed brand copy.' },
+    _meta: {
+      status: 'CONTENT_SOURCE_REQUIRED',
+      source: null,
+      confidence: null,
+      notes:
+        'defaultTitle/titleTemplate are structural, not confirmed brand ' +
+        'copy. defaultDescription is a deliberately neutral technical ' +
+        'fallback (company name only) — not invented marketing copy — ' +
+        'used only on pages/fields with no authoritative source content, ' +
+        'so a real <meta name="description"> value exists instead of a ' +
+        'literal "CONTENT SOURCE REQUIRED" string leaking into page ' +
+        'source. Replace with confirmed copy once supplied — see ' +
+        'docs/CONTENT_GAPS.md.',
+    },
     defaultTitle: 'Absolute B2B',
     titleTemplate: '%s | Absolute B2B',
-    defaultDescription:
-      'CONTENT SOURCE REQUIRED — replace with confirmed meta description.',
+    defaultDescription: 'Absolute B2B.',
   },
 };

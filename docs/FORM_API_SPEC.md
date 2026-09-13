@@ -122,9 +122,16 @@ misconfigured):
   `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `CONTACT_EMAIL`
   (recipient), `EMAIL_FROM` (sender identity).
 - If any required SMTP env var is missing, the service throws a clear
-  configuration error at startup-check time rather than silently pretending
-  to send — the `/api/contact` route will return the `502` shape above with
-  a message indicating email is not configured, not a fake `200`.
+  configuration error rather than silently pretending to send — the
+  `/api/contact` route will return the `502` shape above with a message
+  indicating email is not configured, not a fake `200`. **Corrected per
+  Phase 4B remediation audit:** this check (`isEmailConfigured()` in
+  `email.service.js`, called from `sendContactNotification`) runs lazily,
+  per request — not at process startup/boot. The server will start and
+  stay up even with SMTP env vars unset; each affected `/api/contact`
+  request will individually get the `502` response above. This matches
+  the comment already in `backend/src/config/env.js` ("Missing SMTP vars
+  are NOT fatal at boot").
 - **Real delivery through this service has not been tested in this
   sandbox — NOT EXECUTED — ENVIRONMENT LIMITATION.** It must be tested
   against real SMTP credentials on the client's machine or on HostingRaja.
@@ -133,11 +140,15 @@ misconfigured):
 - MongoDB is **not** wired in by default per the "don't add Mongo unless
   demonstrated need" rule. The architecture leaves a clean seam
   (`backend/src/models/` is present but empty, `backend/src/config/env.js`
-  reads an optional `MONGODB_URI`) so persistence can be added later
-  without restructuring: `contact.controller.js` calls an injectable
-  `leadStore` interface that currently only calls the email service. If the
-  client confirms the real site persists leads to a database, a Mongo (or
-  other) model/repository can be dropped into that same seam.
+  reads an optional `MONGODB_URI`) so persistence can be added later.
+  **Corrected per Phase 4B remediation audit:** as of the current
+  implementation, `contact.controller.js` calls `sendContactNotification`
+  (`email.service.js`) directly — there is no injectable `leadStore`
+  interface in the code today, only the empty `backend/src/models/`
+  directory as a placeholder location. If the client confirms the real
+  site persists leads to a database, a repository/interface should be
+  introduced at that point (and this document updated to match), rather
+  than assuming one already exists.
 
 ### Spam Protection Summary
 - Honeypot field (frontend + backend check)
@@ -148,6 +159,13 @@ misconfigured):
   decision, not an architecture default)
 
 ### Security Considerations
+- `app.set('trust proxy', 1)` (added Phase 4B remediation) — trusts
+  exactly one reverse-proxy hop for `X-Forwarded-For`, which the rate
+  limiter keys on via `req.ip`. Required for the per-IP rate limit to
+  actually be per-client once deployed behind the reverse proxy in
+  `docs/HOSTINGRAJA_DEPLOYMENT_PLAN.md` — without it, every request would
+  appear to come from the proxy's own address, and the limit would apply
+  to all visitors collectively rather than individually.
 - CORS restricted to the configured `FRONTEND_URL` origin, not `*`.
 - No stack traces or internal error detail returned to the client in
   production (`NODE_ENV=production` suppresses verbose error bodies).

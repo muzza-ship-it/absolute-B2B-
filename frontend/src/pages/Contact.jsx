@@ -5,6 +5,7 @@ import FormField from '../components/form/FormField.jsx';
 import Input from '../components/form/Input.jsx';
 import Textarea from '../components/form/Textarea.jsx';
 import Select from '../components/form/Select.jsx';
+import Seo from '../components/Seo.jsx';
 import { useContactForm } from '../hooks/useContactForm.js';
 import { services } from '../data/services.js';
 import { siteContent } from '../data/site-content.js';
@@ -25,9 +26,15 @@ export default function Contact() {
 
   return (
     <>
+      {/* Description built only from already-confirmed contact info
+          (siteContent.contact) — a structural fact, not marketing copy. */}
+      <Seo
+        title="Contact"
+        description={`Contact Absolute B2B — ${siteContent.contact.email} or ${siteContent.contact.phoneDisplay}.`}
+      />
       <PageHero
         title="Contact Us"
-        subtitle="Tell us about your business and we'll be in touch."
+        subtitle="CONTENT SOURCE REQUIRED"
       />
       <Section>
         <div className="contact-layout">
@@ -155,6 +162,15 @@ export default function Contact() {
               <a href={`tel:${siteContent.contact.phoneHref}`}>
                 {siteContent.contact.phoneDisplay}
               </a>
+            </p>
+            <p>
+              <a href={`tel:${siteContent.contact.secondaryPhoneHref}`}>
+                {siteContent.contact.secondaryPhoneDisplay}
+              </a>
+            </p>
+            <p>
+              <strong>Virtual office</strong><br />
+              {siteContent.contact.address}
             </p>
           </div>
         </div>

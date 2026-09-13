@@ -1,30 +1,20 @@
-// Case study record count is NOT confirmed from the real site — a fixed
-// number is deliberately not invented here (unlike services/testimonials,
-// where the count was explicitly confirmed). This array ships with ONE
-// placeholder record purely to prove out the component/route shape
-// (CaseStudies.jsx / CaseStudyDetail.jsx). Replace/extend once the real
-// count and content are known — see docs/CONTENT_GAPS.md.
-//
-// See docs/CONTENT_INGESTION.md for the _meta status system. Case study
-// results/metrics are treated with the same caution as testimonials —
-// recovered results are RECOVERED_NEEDS_VERIFICATION, never assumed
-// genuine just because they appeared on the prior site.
-export const caseStudies = [
-  {
-    id: 'case-study-placeholder',
-    slug: 'case-study-placeholder',
-    client: 'CONTENT SOURCE REQUIRED',
-    industry: 'CONTENT SOURCE REQUIRED',
-    challenge: 'CONTENT SOURCE REQUIRED',
-    solution: 'CONTENT SOURCE REQUIRED',
-    execution: 'CONTENT SOURCE REQUIRED',
-    results: 'CONTENT SOURCE REQUIRED',
-    metrics: [], // e.g. [{ label: "CONTENT SOURCE REQUIRED", value: "CONTENT SOURCE REQUIRED" }]
-    _meta: {
-      status: 'CONTENT_SOURCE_REQUIRED',
-      source: null,
-      confidence: null,
-      notes: 'Placeholder record only — real count of case studies on the live site is unconfirmed.',
-    },
+// No individual case-study cards were rendered in the supplied screenshot.
+// Aggregate impact figures are recovered separately; no client/case details
+// are invented.
+export const caseStudies = [];
+
+export const caseStudyImpact = {
+  heading: 'AGGREGATE IMPACT',
+  subtitle: 'Combined results across all case studies',
+  metrics: [
+    { value: '$35M+', label: 'Total Revenue Impact' },
+    { value: '1,200+', label: 'Qualified Leads Generated' },
+    { value: '280%', label: 'Average Growth Rate' },
+  ],
+  _meta: {
+    status: 'RECOVERED_NEEDS_VERIFICATION',
+    source: 'screenshot: 03-success-stories.png, supplied 2026-09-13',
+    confidence: 'high',
+    notes: 'Individual case-study cards were not rendered in the supplied screenshot.',
   },
-];
+};

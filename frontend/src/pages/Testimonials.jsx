@@ -3,6 +3,7 @@ import PageHero from '../components/PageHero.jsx';
 import Section from '../components/Section.jsx';
 import Card from '../components/Card.jsx';
 import CTASection from '../components/CTASection.jsx';
+import Seo from '../components/Seo.jsx';
 import { testimonials, INDUSTRY_FILTERS } from '../data/testimonials.js';
 import './Testimonials.css';
 
@@ -19,7 +20,8 @@ export default function Testimonials() {
 
   return (
     <>
-      <PageHero title="Testimonials" subtitle="CONTENT SOURCE REQUIRED" />
+      <Seo title="Testimonials" />
+      <PageHero title="Testimonials" subtitle="Don't just take our word for it. Hear from the clients who have experienced transformational growth with Absolute B2B's team, systems and strategies." />
       <Section>
         <div className="testimonial-filters" role="group" aria-label="Filter by industry">
           {INDUSTRY_FILTERS.map((industry) => (
@@ -40,7 +42,7 @@ export default function Testimonials() {
         </div>
 
         <div className="testimonial-grid">
-          {filtered.map((t) => (
+          {filtered.filter((t) => t._meta?.status === 'RECOVERED_NEEDS_VERIFICATION' || t._meta?.status === 'CONFIRMED').map((t) => (
             <Card key={t.id} className="testimonial-card">
               <p className="testimonial-card__quote">
                 {t.quote || 'CONTENT SOURCE REQUIRED'}
@@ -53,7 +55,7 @@ export default function Testimonials() {
           ))}
         </div>
       </Section>
-      <CTASection heading="Join our satisfied clients" ctaLabel="Get Started" />
+      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
     </>
   );
 }

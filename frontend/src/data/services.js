@@ -11,70 +11,70 @@
 export const services = [
   {
     id: "service-01",
-    slug: "service-01",
-    name: "CONTENT SOURCE REQUIRED",
-    shortDescription: "CONTENT SOURCE REQUIRED",
-    description: "CONTENT SOURCE REQUIRED",
-    deliverables: [], // CONTENT SOURCE REQUIRED
-    process: [], // CONTENT SOURCE REQUIRED
-    outcomes: [], // CONTENT SOURCE REQUIRED
-    industries: [], // CONTENT SOURCE REQUIRED
+    slug: "b2b-tech-marketing-sales",
+    name: "B2B Tech Marketing & Sales",
+    shortDescription: "Strategic outbound campaigns and sales enablement services designed to reach decision-makers in the tech industry. We accelerate your sales cycle with data-driven insights and proven methodologies.",
+    description: "Strategic outbound campaigns and sales enablement services designed to reach decision-makers in the tech industry. We accelerate your sales cycle with data-driven insights and proven methodologies.",
+    deliverables: [],
+    process: [],
+    outcomes: [],
+    industries: ["Technology & SaaS"],
     _meta: {
-      status: "CONTENT_SOURCE_REQUIRED",
-      source: null,
-      confidence: null,
-      notes: null,
+      status: "RECOVERED_NEEDS_VERIFICATION",
+      source: "screenshot: 07-media-deck-1.png / 01-home.png, supplied 2026-09-13",
+      confidence: "high",
+      notes: "Recovered from the supplied existing-site screenshot(s). No additional deliverables/process/outcome fields were inferred.",
     },
   },
   {
     id: "service-02",
-    slug: "service-02",
-    name: "CONTENT SOURCE REQUIRED",
-    shortDescription: "CONTENT SOURCE REQUIRED",
-    description: "CONTENT SOURCE REQUIRED",
-    deliverables: [], // CONTENT SOURCE REQUIRED
-    process: [], // CONTENT SOURCE REQUIRED
-    outcomes: [], // CONTENT SOURCE REQUIRED
-    industries: [], // CONTENT SOURCE REQUIRED
+    slug: "demand-appointment-generation",
+    name: "Demand & Appointment Generation",
+    shortDescription: "Fill your pipeline with qualified prospects and schedule meetings with decision-makers.",
+    description: "Fill your pipeline with qualified prospects and schedule meetings with decision-makers.",
+    deliverables: [],
+    process: [],
+    outcomes: [],
+    industries: ["Technology & SaaS", "Healthcare & Medical", "Finance & Insurance", "E-commerce & Retail", "Manufacturing", "Professional Services"],
     _meta: {
-      status: "CONTENT_SOURCE_REQUIRED",
-      source: null,
-      confidence: null,
-      notes: null,
+      status: "RECOVERED_NEEDS_VERIFICATION",
+      source: "screenshot: 07-media-deck-1.png, supplied 2026-09-13",
+      confidence: "high",
+      notes: "Recovered from the supplied existing-site screenshot(s). No additional deliverables/process/outcome fields were inferred.",
     },
   },
   {
     id: "service-03",
-    slug: "service-03",
-    name: "CONTENT SOURCE REQUIRED",
-    shortDescription: "CONTENT SOURCE REQUIRED",
-    description: "CONTENT SOURCE REQUIRED",
-    deliverables: [], // CONTENT SOURCE REQUIRED
-    process: [], // CONTENT SOURCE REQUIRED
-    outcomes: [], // CONTENT SOURCE REQUIRED
-    industries: [], // CONTENT SOURCE REQUIRED
+    slug: "email-digital-marketing",
+    name: "Email & Digital Marketing",
+    shortDescription: "Targeted campaigns with exceptional open rates and conversion performance.",
+    description: "Targeted campaigns with exceptional open rates and conversion performance.",
+    deliverables: [],
+    process: [],
+    outcomes: [],
+    industries: ["Technology & SaaS", "Healthcare & Medical", "Finance & Insurance", "E-commerce & Retail", "Manufacturing", "Professional Services"],
     _meta: {
-      status: "CONTENT_SOURCE_REQUIRED",
-      source: null,
-      confidence: null,
-      notes: null,
+      status: "RECOVERED_NEEDS_VERIFICATION",
+      source: "screenshot: 07-media-deck-1.png / 01-home.png, supplied 2026-09-13",
+      confidence: "high",
+      notes: "Recovered from the supplied existing-site screenshot(s). No additional deliverables/process/outcome fields were inferred.",
     },
   },
   {
     id: "service-04",
-    slug: "service-04",
-    name: "CONTENT SOURCE REQUIRED",
-    shortDescription: "CONTENT SOURCE REQUIRED",
-    description: "CONTENT SOURCE REQUIRED",
-    deliverables: [], // CONTENT SOURCE REQUIRED
-    process: [], // CONTENT SOURCE REQUIRED
-    outcomes: [], // CONTENT SOURCE REQUIRED
-    industries: [], // CONTENT SOURCE REQUIRED
+    slug: "content-strategy-creation",
+    name: "Content Strategy & Creation",
+    shortDescription: "Position your brand as a thought leader with engaging content marketing.",
+    description: "Position your brand as a thought leader with engaging content marketing.",
+    deliverables: [],
+    process: [],
+    outcomes: [],
+    industries: ["Technology & SaaS", "Healthcare & Medical", "Finance & Insurance", "E-commerce & Retail", "Manufacturing", "Professional Services"],
     _meta: {
-      status: "CONTENT_SOURCE_REQUIRED",
-      source: null,
-      confidence: null,
-      notes: null,
+      status: "RECOVERED_NEEDS_VERIFICATION",
+      source: "screenshot: 07-media-deck-1.png / 01-home.png, supplied 2026-09-13",
+      confidence: "high",
+      notes: "Recovered from the supplied existing-site screenshot(s). No additional deliverables/process/outcome fields were inferred.",
     },
   },
   {

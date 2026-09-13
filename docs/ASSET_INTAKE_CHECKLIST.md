@@ -1,46 +1,20 @@
-# Asset Intake Checklist
+# Asset Intake Checklist — Phase 4B
 
-Used once per uploaded file, at the moment it arrives — before any content
-from it is used anywhere. Copy the template block below for each new file
-and append it to the log table. Nothing is skipped, even for a file that
-looks obviously fine at a glance.
+The eight supplied website screenshots were reviewed against `docs/REVIEW_PROTOCOL.md` on 2026-09-13.
 
-## Template (copy per file)
+| File | Visual branding | Text extracted | Company/domain check | Contact check | Classification | Confidence |
+|---|---|---|---|---|---|---|
+| 01-home.png | Absolute B2B logo | Home hero/core expertise/CTA | Absolute B2B + Emergent preview host visible | Existing confirmed contact not fully legible in this crop | RECOVERED_NEEDS_VERIFICATION | high |
+| 02-services.png | Absolute B2B logo | Services hero/filter labels/4 industries/footer structure | Absolute B2B + Emergent preview host | Footer contact visible but small | RECOVERED_NEEDS_VERIFICATION | high |
+| 03-success-stories.png | Absolute B2B logo | Success Stories hero/aggregate impact stats | Absolute B2B + Emergent preview host | Small/partial | RECOVERED_NEEDS_VERIFICATION | high |
+| 04-testimonials.png | Absolute B2B logo | Testimonials hero/stats/empty-state/CTA | Absolute B2B + Emergent preview host | Small/partial | RECOVERED_NEEDS_VERIFICATION | high |
+| 05-pricing.png | Absolute B2B logo | Pricing tiers/calculator/FAQ | Absolute B2B + Emergent preview host | Small/partial | RECOVERED_NEEDS_VERIFICATION | high |
+| 06-about.png | Absolute B2B logo | About intro/stats/values/visible journey milestones | Absolute B2B + Emergent preview host | Small/partial | RECOVERED_NEEDS_VERIFICATION | high |
+| 07-media-deck-1.png | Absolute B2B branding | Media Deck hero/core services/industries/process/value propositions | Absolute B2B media deck host | No conflicting external company identifier observed | RECOVERED_NEEDS_VERIFICATION | high |
+| 08-media-deck-2.png | Absolute B2B branding | Process/regional coverage/closing contact block | Absolute B2B media deck host | `sales@absoluteb2b.com` + phone numbers differ from confirmed primary phone | RECOVERED_NEEDS_VERIFICATION | high |
 
-```
-### File: <original filename>
+## Gate notes
 
-- Original filename: 
-- Upload date: 
-- Source (where/who supplied it, and via what — chat upload, described
-  location, etc.): 
-- File type (image / PDF / doc / export / recording frame / other): 
-- Detected branding (company name(s), logo(s), domain(s), email(s),
-  phone number(s) found — list ALL detected, not just the expected one): 
-- Confidence score (high / medium / low, per docs/REVIEW_PROTOCOL.md): 
-- Classification (CONFIRMED / RECOVERED — NEEDS VERIFICATION / EXCLUDED /
-  UNKNOWN): 
-- Notes (anything relevant — image quality, partial/cropped branding,
-  conflicting signals, why a particular classification was chosen): 
-```
-
-## Log
-
-_(No files have been uploaded yet — no entries.)_
-
-| # | Filename | Upload Date | Source | Type | Detected Branding | Confidence | Classification | Notes |
-|---|---|---|---|---|---|---|---|---|
-
-## Rules
-
-- Every uploaded file gets a row, regardless of classification —
-  including EXCLUDED and UNKNOWN files. A file is never processed and
-  then left off this log.
-- "Detected branding" lists everything found, even if it includes both
-  Absolute B2B and another company's marks on the same file (e.g. a
-  partnership slide) — a mixed file is not automatically CONFIRMED just
-  because Absolute B2B branding is also present; see
-  `docs/REVIEW_PROTOCOL.md` step 6 for how to handle mixed evidence.
-- This checklist feeds `docs/RECOVERY_LOG.md` (the append-only audit
-  trail) and `docs/CONTENT_STATUS.md` (the live counters) — update all
-  three together for each file.
+- No screenshot was excluded for another company's branding/name/domain.
+- The Emergent preview domains are source-host domains for the existing site; they are not treated as the business's production domain.
+- The Media Deck phone numbers are explicitly flagged as a contact conflict and are not promoted to the primary contact without client verification.

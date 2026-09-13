@@ -39,3 +39,5 @@
   color: var(--color-text-muted);
   margin: 0;
 }
+
+.testimonial-empty { grid-column: 1 / -1; text-align:center; color:var(--color-text-muted); }

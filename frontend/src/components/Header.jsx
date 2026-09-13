@@ -2,11 +2,17 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { NAV_LINKS, PRIMARY_CTA } from '../config/navigation.js';
 import Button from './Button.jsx';
+import logo from '../assets/brand/logo.jpeg';
 import './Header.css';
 
 // Structural header: logo slot, desktop nav, mobile hamburger + drawer,
-// primary CTA. Visual identity (logo asset, exact spacing/typography) is
-// pending the real design reference — see docs/CONTENT_GAPS.md.
+// primary CTA. Logo asset is the real, owner-supplied Absolute B2B logo
+// (Phase 4B logo integration — see frontend/src/assets/brand/MANIFEST.md).
+// Imported directly here (rather than via site-content.js) so it gets a
+// real Vite-resolved asset URL — see the comment at the top of
+// site-content.js for why that file can't import binary assets itself.
+// Other visual identity (brand colors, typeface) is still pending the real
+// design reference — see docs/CONTENT_GAPS.md.
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -14,8 +20,7 @@ export default function Header() {
     <header className="header">
       <div className="header__inner">
         <NavLink to="/" className="header__logo" onClick={() => setMenuOpen(false)}>
-          {/* Logo asset: CONTENT SOURCE REQUIRED — text wordmark placeholder */}
-          Absolute B2B
+          <img src={logo} alt="Absolute B2B" className="header__logo-image" />
         </NavLink>
 
         <nav className="header__nav header__nav--desktop" aria-label="Primary">

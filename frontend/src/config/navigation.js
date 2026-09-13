@@ -8,6 +8,7 @@ export const NAV_LINKS = [
   { label: 'Testimonials', to: '/testimonials' },
   { label: 'Pricing', to: '/pricing' },
   { label: 'Contact', to: '/contact' },
+  { label: 'Resources', to: '/resources' },
 ];
 
 // Label confirmed by client ("Get Started"). Target route assumed to be

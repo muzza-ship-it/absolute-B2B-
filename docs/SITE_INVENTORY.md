@@ -233,7 +233,8 @@ number tap-to-call, email tap-to-mail
 
 ## Cross-Page: Navigation
 
-**Header (all pages):** logo (asset CONTENT SOURCE REQUIRED) + links to
+**Header (all pages):** logo (real asset, supplied 2026-09-12 — see
+`frontend/src/assets/brand/MANIFEST.md`) + links to
 Home, About, Services, Case Studies, Testimonials, Pricing, Contact +
 primary CTA button ("Get Started") + mobile hamburger triggering a slide-in
 / overlay drawer with the same links.

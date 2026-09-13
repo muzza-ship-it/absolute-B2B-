@@ -9,6 +9,7 @@ import CaseStudyDetail from './pages/CaseStudyDetail.jsx';
 import Testimonials from './pages/Testimonials.jsx';
 import Pricing from './pages/Pricing.jsx';
 import Contact from './pages/Contact.jsx';
+import Resources from './pages/Resources.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 // Route table. Keep this in sync with docs/SITE_INVENTORY.md and the
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/resources" element={<Resources />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

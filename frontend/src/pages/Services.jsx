@@ -3,6 +3,7 @@ import PageHero from '../components/PageHero.jsx';
 import Section from '../components/Section.jsx';
 import Card from '../components/Card.jsx';
 import CTASection from '../components/CTASection.jsx';
+import Seo from '../components/Seo.jsx';
 import { services } from '../data/services.js';
 import './Services.css';
 
@@ -11,7 +12,8 @@ import './Services.css';
 export default function Services() {
   return (
     <>
-      <PageHero title="Services" subtitle="CONTENT SOURCE REQUIRED" />
+      <Seo title="Services" />
+      <PageHero title="Services" subtitle="Comprehensive B2B lead generation solutions designed to drive growth across Technology, Healthcare, Finance, and E-commerce industries." />
       <Section>
         <div className="service-grid">
           {services.map((service) => (
@@ -23,7 +25,7 @@ export default function Services() {
           ))}
         </div>
       </Section>
-      <CTASection heading="Not sure which service fits?" ctaLabel="Get Started" />
+      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
     </>
   );
 }

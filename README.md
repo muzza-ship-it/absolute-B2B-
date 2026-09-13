@@ -17,7 +17,9 @@ can proceed — see `docs/CONTENT_GAPS.md`.
 frontend/   React + Vite SPA
 backend/    Node.js + Express API (contact form)
 docs/       Requirements, inventory, architecture, deployment docs
-scripts/    Build/deploy helper scripts
+scripts/    Build-time helper scripts (sitemap.xml generation — see
+            scripts/generate-sitemap.js, wired into `frontend`'s
+            "prebuild" script)
 ```
 
 See `docs/ARCHITECTURE.md` for the full breakdown.
@@ -55,8 +57,10 @@ npm test
 sandbox that generated this codebase — it has no outbound network access,
 so `npm install` cannot reach the npm registry here. Every command above is
 documented precisely so it can be run for real on a developer machine or
-CI. See `docs/HANDOVER.md` (created at the end of the build) for the exact
-list of what has and hasn't been executed.
+CI. See `docs/HANDOVER.md` for the current, dated list of exactly what has
+and hasn't been executed — it is a live status document, not a completion
+record, and is updated at the end of each work session rather than only
+once at project close.
 
 ## Documentation Index
 

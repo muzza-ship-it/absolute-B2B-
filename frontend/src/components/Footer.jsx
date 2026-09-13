@@ -41,6 +41,15 @@ export default function Footer() {
                 {siteContent.contact.phoneDisplay}
               </a>
             </li>
+            <li>
+              <a href={`tel:${siteContent.contact.secondaryPhoneHref}`}>
+                {siteContent.contact.secondaryPhoneDisplay}
+              </a>
+            </li>
+            <li>
+              <strong>Virtual office</strong><br />
+              {siteContent.contact.address}
+            </li>
           </ul>
         </div>
       </div>

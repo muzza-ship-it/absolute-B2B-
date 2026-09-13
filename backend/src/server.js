@@ -10,6 +10,16 @@ import contactRoutes from './routes/contact.routes.js';
 export function createApp() {
   const app = express();
 
+  // Trust the first hop's X-Forwarded-For value. Required for correct
+  // per-client rate limiting (backend/src/middleware/rateLimit.js) once
+  // deployed behind the reverse proxy described in
+  // docs/HOSTINGRAJA_DEPLOYMENT_PLAN.md — without this, every request
+  // would appear to originate from the proxy's own IP, and the 5-per-
+  // 10-minutes limit would apply to ALL visitors collectively instead of
+  // per real client. `1` = trust exactly one proxy hop (the reverse
+  // proxy itself), not an open-ended chain.
+  app.set('trust proxy', 1);
+
   app.use(express.json({ limit: '20kb' }));
   app.use(
     cors({
