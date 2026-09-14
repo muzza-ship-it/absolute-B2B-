@@ -32,7 +32,6 @@ export default function CaseStudies() {
           </div>
         </Section>
       )}
-      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
-    </>
+</>
   );
 }

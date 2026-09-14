@@ -42,7 +42,6 @@ export default function About() {
         </ol>
         <p>Additional journey milestones are not visible in the supplied screenshot and remain source-required.</p>
       </Section>
-      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
-    </>
+</>
   );
 }

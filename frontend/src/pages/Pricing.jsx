@@ -43,7 +43,6 @@ export default function Pricing() {
           {pricingPage.faqs.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}
         </div>
       </Section>
-      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
-    </>
+</>
   );
 }

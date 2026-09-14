@@ -32,7 +32,6 @@ export default function CaseStudyDetail() {
         <p>{caseStudy.results}</p>
         <Link to="/case-studies">&larr; Back to all case studies</Link>
       </Section>
-      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
-    </>
+</>
   );
 }

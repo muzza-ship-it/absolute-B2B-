@@ -34,7 +34,7 @@ export default function Contact() {
       />
       <PageHero
         title="Contact Us"
-        subtitle="CONTENT SOURCE REQUIRED"
+
       />
       <Section>
         <div className="contact-layout">

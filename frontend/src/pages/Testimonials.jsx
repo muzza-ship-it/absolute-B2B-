@@ -7,7 +7,7 @@ import Seo from '../components/Seo.jsx';
 import { testimonials, INDUSTRY_FILTERS } from '../data/testimonials.js';
 import './Testimonials.css';
 
-// Industry filter is fully functional client-side state — swapping in the
+// Industry filter is fully functional client-side state â€” swapping in the
 // real 10 testimonial records (data/testimonials.js) is all that's needed
 // to make this page complete.
 export default function Testimonials() {
@@ -45,17 +45,17 @@ export default function Testimonials() {
           {filtered.filter((t) => t._meta?.status === 'RECOVERED_NEEDS_VERIFICATION' || t._meta?.status === 'CONFIRMED').map((t) => (
             <Card key={t.id} className="testimonial-card">
               <p className="testimonial-card__quote">
-                {t.quote || 'CONTENT SOURCE REQUIRED'}
+                {t.quote}
               </p>
               <p className="testimonial-card__author">
-                {t.authorName || 'CONTENT SOURCE REQUIRED'}
+                {t.authorName}
                 {t.company ? `, ${t.company}` : ''}
               </p>
             </Card>
           ))}
         </div>
       </Section>
-      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
+
     </>
   );
 }

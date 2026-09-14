@@ -7,7 +7,7 @@ import Seo from '../components/Seo.jsx';
 import { services } from '../data/services.js';
 import './Services.css';
 
-// Renders all 21 service records from data/services.js — the grid itself
+// Renders all 21 service records from data/services.js â€” the grid itself
 // is fully functional; only the per-service text is pending real content.
 export default function Services() {
   return (
@@ -16,7 +16,7 @@ export default function Services() {
       <PageHero title="Services" subtitle="Comprehensive B2B lead generation solutions designed to drive growth across Technology, Healthcare, Finance, and E-commerce industries." />
       <Section>
         <div className="service-grid">
-          {services.map((service) => (
+          {services.filter((service) => service._meta?.status === 'RECOVERED_NEEDS_VERIFICATION' || service._meta?.status === 'CONFIRMED').map((service) => (
             <Card key={service.id} className="service-card">
               <h3>{service.name}</h3>
               <p>{service.shortDescription}</p>
@@ -25,7 +25,7 @@ export default function Services() {
           ))}
         </div>
       </Section>
-      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
+
     </>
   );
 }

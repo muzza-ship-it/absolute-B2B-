@@ -8,7 +8,7 @@ import './Resources.css';
 
 // Restored Phase 4B (whitepaper recovery pass). No "Blogs" / "Resources"
 // page or route existed anywhere in the repository before this file was
-// added — confirmed by a full-repo search (see docs/RECOVERY_LOG.md and
+// added â€” confirmed by a full-repo search (see docs/RECOVERY_LOG.md and
 // docs/CONTENT_STATUS.md). This is the smallest clean implementation that
 // makes the 20 restored whitepaper PDFs (frontend/public/whitepapers/,
 // data/whitepapers.js) discoverable and downloadable, following the same
@@ -19,8 +19,8 @@ import './Resources.css';
 //
 // Fields shown per card are limited to what's verified in
 // data/whitepapers.js (title, subtitle, author, page count). Category,
-// publication date, and description are CONTENT SOURCE REQUIRED for every
-// record and are deliberately not displayed as if they were real values.
+// publication date, and description are omitted unless verified in the source PDF, so they are not
+// displayed as if they were real values.
 export default function Resources() {
   return (
     <>
@@ -36,7 +36,7 @@ export default function Resources() {
               <h3>{wp.title}</h3>
               <p className="whitepaper-card__subtitle">{wp.subtitle}</p>
               <p className="whitepaper-card__meta">
-                By {wp.author} · {wp.pageCount} pages
+                By {wp.author} Â· {wp.pageCount} pages
               </p>
               <a
                 className="btn btn--primary"
@@ -51,7 +51,6 @@ export default function Resources() {
           ))}
         </div>
       </Section>
-      <CTASection heading="CONTENT SOURCE REQUIRED" ctaLabel="Get Started" />
-    </>
+</>
   );
 }
